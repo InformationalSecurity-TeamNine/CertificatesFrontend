@@ -3,22 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
-import { RegistrationComponent } from './modules/authentication/registration/registration.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './modules/authentication/interceptor/interceptor';
 import { LayoutModule } from './modules/layout/layout.module';
-import { NavbarComponent } from './modules/layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RegistrationComponent,    
+    AppComponent
+      
   ],
   imports: [
     BrowserModule,
     LayoutModule,
     AuthenticationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [ {  provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },],
   bootstrap: [AppComponent]

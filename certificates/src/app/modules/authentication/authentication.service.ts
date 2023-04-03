@@ -30,14 +30,6 @@ export class AuthenticationService {
 
   }
 
-  logout():Observable<string>{
-
-      return this.http.get(environment.apiHost + 'api/user/logout',{
-        responseType:'text',
-      });
-
-  }
-
   isLoggedIn(): boolean{
     return localStorage.getItem('user') != null;
   }
