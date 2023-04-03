@@ -4,16 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { RegistrationComponent } from './modules/authentication/registration/registration.component';
-import { LayoutModule } from './modules/layout/layout.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './modules/authentication/interceptor/interceptor';
-import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from './modules/layout/layout.module';
+import { NavbarComponent } from './modules/layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    NavbarComponent
+    RegistrationComponent,    
   ],
   imports: [
     BrowserModule,
