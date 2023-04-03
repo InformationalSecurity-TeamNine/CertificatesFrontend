@@ -10,11 +10,10 @@ const routes: Routes = [
   canActivate: [LoginGuard],
   loadChildren: () =>
     import('../app/modules/authentication/authentication.module').then((m) => m.AuthenticationModule),},
+    {path:'register', component:RegistrationComponent},
     {path:'home', component:HomeComponent},
     {path:'', redirectTo: '/home', pathMatch:'full'},
-    {path:'**', component:HomeComponent},
-    {path:'login', component:LoginComponent},
-    {path:'register', component:RegistrationComponent},
+    {path:'**', component:HomeComponent}
 
   ];
   

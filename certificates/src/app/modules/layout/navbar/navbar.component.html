@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand-lg navbar-light dark-blue-background">
+    <a class="nav-logo" href="#">Certificates Security</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <app-user-navbar *ngIf="role === 'ADMIN' || role === 'BASIC_USER'"></app-user-navbar>
+      <app-home-navbar *ngIf="role !== 'ADMIN' && role !== 'BASIC_USER'"></app-home-navbar>
+    </div>
+  </nav>

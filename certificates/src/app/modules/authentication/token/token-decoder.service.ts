@@ -9,7 +9,7 @@ export class TokenDecoderService {
 
   getDecodedAccesToken():any{
     try{
-      return jwt_decode(localStorage.getItem('user'));
+        return jwt_decode(localStorage.getItem('user'));
     }catch(Error){
       return null;
     }

@@ -16,8 +16,6 @@ export class Interceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
       const accessToken: any = localStorage.getItem('user');
     const decodedItem = JSON.parse(accessToken);
-    const refreshToken: any = localStorage.getItem('refreshToken');
-    const decodedRefreshToken = JSON.parse(refreshToken);
 
     if (request.headers.get('skip')) return next.handle(request);
     if (accessToken) {
