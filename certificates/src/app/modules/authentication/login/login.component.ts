@@ -28,9 +28,11 @@ export class LoginComponent {
     if(!this.loginForm.valid) {this.hasError = true; return;}
     else this.hasError = false;
 
-    const email:string = this.loginForm.value.email;
-    const password:string = this.loginForm.value.password;
-    
+    let email:string | null | undefined = this.loginForm.value.email;
+    let password:string | null | undefined = this.loginForm.value.password;
+    if(email === null || password === null || email === undefined || password == undefined)
+      return;
+
     this.authenticationService.login(email, password).subscribe({
 
       next: (result) => {

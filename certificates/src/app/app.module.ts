@@ -7,11 +7,13 @@ import { RegistrationComponent } from './modules/authentication/registration/reg
 import { LayoutModule } from './modules/layout/layout.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './modules/authentication/interceptor/interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
