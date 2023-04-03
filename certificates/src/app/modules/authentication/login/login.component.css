@@ -1,6 +1,6 @@
 
 .login-section{
-    width: 80%;
+    width: 70%;
     margin: 40px auto;
 }
 .center-text{
@@ -26,12 +26,13 @@
 .button-style{
     padding:6px 26px;
     border-radius: 8px;
-    border: 1px transparent;
+    border: 2px solid #105a8f;
     font-weight: 500;
     font-size: 24px;
-    color:white;
+    color: #105a8f;
     background-color: #105a8f;
     text-transform: uppercase;
+
 }
 
 .align-text-left{
@@ -51,7 +52,13 @@ a:hover{
     text-decoration: underline;
 }
 button:hover{
-     color: #4B7869;
+     color: #011320;
+}
+.login-section-input{
+    border: 5px solid rgb(88, 94, 150);
+    border-left: none;
+    background-color: rgb(255, 255, 255);
+    color: #011320;
 }
 
 input{
@@ -80,9 +87,10 @@ input::-webkit-input-placeholder{
 
 
 .white-line{
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #105a8f;
     position: relative;
     top:12px;
+    padding: 10px;
     width: 100%;
 }
 
@@ -91,6 +99,6 @@ input::-webkit-input-placeholder{
         width: 40vw; 
     }
     .login-section{
-        width: 100%;
+        width: 90%;
     }
 }
