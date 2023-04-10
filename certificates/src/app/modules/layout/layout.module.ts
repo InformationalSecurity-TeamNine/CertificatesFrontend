@@ -7,6 +7,7 @@ import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import { CertificateDisplayComponent } from './certificate-display/certificate-display.component';
 import { CertificateRequestsDisplayComponent } from './certificate-requests-display/certificate-requests-display.component';
+import { ValidityComponent } from './validity/validity.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CertificateRequestsDisplayComponent } from './certificate-requests-disp
     HomeNavbarComponent,
     UserNavbarComponent,
     CertificateDisplayComponent,
-    CertificateRequestsDisplayComponent
+    CertificateRequestsDisplayComponent,
+    ValidityComponent
     
   ],
   imports: [
