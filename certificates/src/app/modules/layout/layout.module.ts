@@ -21,7 +21,8 @@ import { CertificateDisplayComponent } from './certificate-display/certificate-d
   ],
   exports:[
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    CertificateDisplayComponent
   ]
 })
 export class LayoutModule { }
