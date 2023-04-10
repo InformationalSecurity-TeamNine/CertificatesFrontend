@@ -6,6 +6,7 @@ import { RegistrationComponent } from "./modules/authentication/registration/reg
 import { CertificateDisplayComponent } from "./modules/layout/certificate-display/certificate-display.component";
 import { CertificateRequestsDisplayComponent } from "./modules/layout/certificate-requests-display/certificate-requests-display.component";
 import { HomeComponent } from "./modules/layout/home/home.component";
+import { ValidityComponent } from "./modules/layout/validity/validity.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent,
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path:'home', component:HomeComponent},
     {path:'certificates', component:CertificateDisplayComponent},
     {path:'certificate-requests', component:CertificateRequestsDisplayComponent},
+    {path:'certificate-validity', component:ValidityComponent},
     {path:'', redirectTo: '/home', pathMatch:'full'},
     {path:'**', component:HomeComponent}
 

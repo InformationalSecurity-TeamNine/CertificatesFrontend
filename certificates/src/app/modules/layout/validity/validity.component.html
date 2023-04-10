@@ -1,0 +1,47 @@
+<div class="row mt-5 text-center">
+
+    <div class="col-12">
+        <h1>Check Validity</h1>
+    </div>
+</div>
+<div class="row text-center my-4">
+
+    <div class="col-md-6 col-12 left-side px-5">
+            <div class="row text-center">
+                <div class="col-12 mb-5">
+                    <h4>Check by entering the ID of a certificate</h4>
+                </div>
+                <div class="col-12 mt-3">
+                    <form
+                    login
+                    [formGroup]="idValidity"
+                    (ngSubmit)="getValidityById()"
+                    >
+                        <div class="form-group">
+                          <input placeholder="id" type="text" class="form-control"  formControlName="id">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+                <div class="col-12 m-3">
+                    <div class="alert alert-primary" role="alert" *ngIf=" this.isShownId && this.isValidId===true">
+                        The certificate with the given id is <b>VALID</b>
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf=" this.isShownId && this.isValidId===false">
+                        The certificate with the given id is <b>INVALID</b>
+                      </div>
+                      <div class="alert alert-warning" role="alert" *ngIf="this.errorMessage !==''">
+                            {{this.errorMessage}}
+                      </div>
+
+                </div>
+            </div>
+    </div>
+    <div class="col-md-6 col-12 right-side px-5">
+        <div class="row text-center">
+            <div class="col-12">
+                <h4>Check by uploading a copy of the certificate</h4>
+            </div>
+        </div>
+    </div>
+</div>
