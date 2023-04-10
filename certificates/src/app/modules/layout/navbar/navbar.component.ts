@@ -25,8 +25,7 @@ export class NavbarComponent implements OnInit{
   }
   ngOnInit(): void {
     this.authenticationService.userState$.subscribe((result) => {
-      if(result !== null)
-        this.role = result;
+      this.role = result;
     });
   }
 
