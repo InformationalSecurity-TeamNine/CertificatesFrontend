@@ -73,12 +73,6 @@ input:hover::-webkit-input-placeholder{
     opacity: 1;
 }
 
-input:focus{
-    background-color: transparent;
-    color: white;
-    font-weight: 400;
-
-}
 
 input::-webkit-input-placeholder{
     color: white;
