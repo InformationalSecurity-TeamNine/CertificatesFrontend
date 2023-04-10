@@ -8,6 +8,7 @@ import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import { CertificateDisplayComponent } from './certificate-display/certificate-display.component';
 import { CertificateRequestsDisplayComponent } from './certificate-requests-display/certificate-requests-display.component';
 import { ValidityComponent } from './validity/validity.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,17 @@ import { ValidityComponent } from './validity/validity.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     HomeComponent,
     NavbarComponent,
     CertificateDisplayComponent,
-    CertificateRequestsDisplayComponent
+    CertificateRequestsDisplayComponent,
+    ValidityComponent,
+    
   ]
 })
 export class LayoutModule { }

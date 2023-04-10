@@ -1,0 +1,8 @@
+.left-side, .right-side{
+    height: 100%;
+    border-right: 2px solid #105a8f;
+}
+.form-control{
+    width: 60%;
+    margin:20px auto;
+}

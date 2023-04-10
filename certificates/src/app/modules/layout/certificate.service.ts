@@ -19,4 +19,8 @@ export class CertificateService {
   getAllRequests() : Observable<PastRequests[]> {
     return this.http.get<PastRequests[]>(environment.apiHost + "api/certificate/past-requests/")
   }
+
+  isValid(id:number): Observable<boolean>{
+    return this.http.get<boolean>(environment.apiHost + "api/certificate/valid/" + id);
+  }
 }
