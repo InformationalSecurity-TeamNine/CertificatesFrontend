@@ -71,19 +71,23 @@ input[type="file"] {
 }
 
 .signup{
-    color:white;
+    color:#073e66;
+    background-color: white;
+    border: 2px solid #073e66;
     margin-top: 7px;
-    width: 100%;
-    padding:6px 26px;
+    width: 40%;
+    padding:16px 26px;
     border-radius: 8px;
-    border: 1px transparent;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 2px 2px 5px rgb(91, 91, 91);
+    transition: .3s ease-in-out;
 }
 .signup:hover{
-    background-color:#073e66;
+    color: white;
+    background-color: #073e66;
+    transition: .3s ease-in-out;
 }
 
 .choose{
