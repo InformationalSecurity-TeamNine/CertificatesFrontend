@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 
-import { Certificate } from 'src/app/models/Certificates';
+import { Certificate, PastRequests } from 'src/app/models/Certificates';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class CertificateService {
 
   getAll() : Observable<Certificate[]> {
     return this.http.get<Certificate[]>(environment.apiHost + "api/certificate")
+  }
+
+  getAllRequests() : Observable<PastRequests[]> {
+    return this.http.get<PastRequests[]>(environment.apiHost + "api/certificate/past-requests/")
   }
 }

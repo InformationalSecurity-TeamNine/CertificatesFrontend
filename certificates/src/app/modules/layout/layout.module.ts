@@ -6,6 +6,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import { CertificateDisplayComponent } from './certificate-display/certificate-display.component';
+import { CertificateRequestsDisplayComponent } from './certificate-requests-display/certificate-requests-display.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { CertificateDisplayComponent } from './certificate-display/certificate-d
     NavbarComponent,
     HomeNavbarComponent,
     UserNavbarComponent,
-    CertificateDisplayComponent
+    CertificateDisplayComponent,
+    CertificateRequestsDisplayComponent
+    
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { CertificateDisplayComponent } from './certificate-display/certificate-d
   exports:[
     HomeComponent,
     NavbarComponent,
-    CertificateDisplayComponent
+    CertificateDisplayComponent,
+    CertificateRequestsDisplayComponent
   ]
 })
 export class LayoutModule { }

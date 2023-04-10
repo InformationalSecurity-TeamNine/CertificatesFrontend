@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Certificate } from 'src/app/models/Certificates';
+import { Certificate, PastRequests } from 'src/app/models/Certificates';
 import { CertificateService } from '../certificate.service';
 
 @Component({
-  selector: 'app-certificate-display',
-  templateUrl: './certificate-display.component.html',
-  styleUrls: ['./certificate-display.component.css']
+  selector: 'app-certificate-requests-display',
+  templateUrl: './certificate-requests-display.component.html',
+  styleUrls: ['./certificate-requests-display.component.css']
 })
-export class CertificateDisplayComponent implements OnInit{
+export class CertificateRequestsDisplayComponent implements OnInit{
 
-  certificates: Certificate[];
+  certificates: PastRequests[];
   hasLoaded: boolean = false;
   constructor(private certificateService: CertificateService){
 
@@ -17,7 +17,7 @@ export class CertificateDisplayComponent implements OnInit{
   }
   ngOnInit(): void {
     
-    this.certificateService.getAll().subscribe({
+    this.certificateService.getAllRequests().subscribe({
       next:(result)=>{
         this.certificates = result;
         this.hasLoaded = true;
@@ -28,10 +28,9 @@ export class CertificateDisplayComponent implements OnInit{
     })
 
   }
-  showCertificate(certificate: Certificate):void{
+  showRequest(certificate: PastRequests):void{
     console.log(certificate);
   }
-
 
 
 }

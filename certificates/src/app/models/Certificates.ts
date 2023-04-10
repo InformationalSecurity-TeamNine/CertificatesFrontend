@@ -13,4 +13,9 @@ export interface UserForCertificateDTO{
     surname: string,
     email: string
 }
-
+export interface PastRequests{
+    id?:number,
+    username: string,
+    status: string,
+    type: string
+}
