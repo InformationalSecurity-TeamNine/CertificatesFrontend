@@ -23,8 +23,8 @@
                     (ngSubmit)="create()"
                     >
                         <div class="form-group">
-                          <label for="type" class="my-3">Select  Certificate Type</label>
-                          <select class="form-control mb-5" id="type" formControlName="type" [(ngModel)]="selectedType" name="selectedType">
+                          <label for="type" class="mb-2">Select  Certificate Type</label>
+                          <select class="form-control mb-3" id="type" formControlName="type" [(ngModel)]="selectedType" name="selectedType">
                             <option *ngIf="role==='ADMIN'">ROOT</option>
                             <option>INTERMEDIATE</option>
                             <option>END</option>
@@ -43,7 +43,7 @@
                         <div class="form-group mt-5">
                             <button type="submit" class="certificates-button" id="confirmLogin">Create</button>
                         </div>
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-2">
                             <div class="alert alert-danger" role="alert" *ngIf="this.hasError">
                                 {{this.errorMessage}}
                               </div>
