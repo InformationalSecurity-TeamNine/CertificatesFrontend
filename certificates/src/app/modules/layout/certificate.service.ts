@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 
 import { Certificate, PastRequests } from 'src/app/models/Certificates';
@@ -22,5 +22,15 @@ export class CertificateService {
 
   isValid(id:number): Observable<boolean>{
     return this.http.get<boolean>(environment.apiHost + "api/certificate/valid/" + id);
+  }
+
+  create(date:Date, type:string, issuerSN: string):Observable<Certificate>{
+    return this.http.post<Certificate>(environment.apiHost + "api/certificate/", 
+    {
+      id: 0,
+      issuerSN: issuerSN,
+      type: type,
+      time: date
+    });
   }
 }

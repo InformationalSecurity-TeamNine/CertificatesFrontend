@@ -8,31 +8,33 @@
 
     <div class="row">
         <div class="col-12 mt-3">
-            <table class="table table-hover table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Serial Number</th>
-                    <th scope="col">Issued At</th>
-                    <th scope="col">Issued For</th>
-                    <th scope="col">Expires in</th>
-                    <th scope="col">Validity</th>
-                    <th scope="col">Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let certificate of certificates;index as i" (click)="showCertificate(certificate)">
-                    <th>{{i + 1}}</th>
-                    <td>{{this.certificate.serialNumber}}</td>
-                    <td>{{this.certificate.issuedAt | date : 'dd/MM/yyyy HH:mm'}}</td>
-                    <td>{{this.certificate.user.name + " " + this.certificate.user.surname}}</td>
-                    <td>{{this.certificate.validTo | date : 'dd/MM/yyyy HH:mm'}}</td>
-                    <td>{{this.certificate.status}}</td>
-                    <td>{{this.certificate.type}}</td>
-                  </tr>
-                  
-                </tbody>
-              </table>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+              <table class="table table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Serial Number</th>
+                      <th scope="col">Issued At</th>
+                      <th scope="col">Issued For</th>
+                      <th scope="col">Expires At</th>
+                      <th scope="col">Validity</th>
+                      <th scope="col">Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let certificate of certificates;index as i" (click)="showCertificate(certificate)">
+                      <th>{{i + 1}}</th>
+                      <td>{{this.certificate.serialNumber}}</td>
+                      <td>{{this.certificate.issuedAt | date : 'dd/MM/yyyy HH:mm'}}</td>
+                      <td>{{this.certificate.user.name + " " + this.certificate.user.surname}}</td>
+                      <td>{{this.certificate.validTo | date : 'dd/MM/yyyy HH:mm'}}</td>
+                      <td>{{this.certificate.status}}</td>
+                      <td>{{this.certificate.type}}</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
         </div>
     </div>
 
