@@ -8,25 +8,30 @@
 
     <div class="row">
         <div class="col-12 mt-3">
-            <table class="table table-hover table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Requester</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let certificate of certificates;index as i" (click)="showRequest(certificate)">
-                    <th>{{i + 1}}</th>
-                    <td>{{this.certificate.username}}</td>
-                    <td>{{this.certificate.status}}</td>
-                    <td>{{this.certificate.type}}</td>
-                  </tr>
-                  
-                </tbody>
-              </table>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+              <table class="table table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Requester</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Decline Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let certificate of certificates;index as i" (click)="showRequest(certificate)">
+                      <th>{{i + 1}}</th>
+                      <td>{{this.certificate.username}}</td>
+                      <td>{{this.certificate.status}}</td>
+                      <td>{{this.certificate.type}}</td>
+                      <td *ngIf="this.certificate.declineReason">{{this.certificate.declineReason}}</td>
+                      <td *ngIf="!this.certificate.declineReason">/</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

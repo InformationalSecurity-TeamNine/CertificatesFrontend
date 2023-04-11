@@ -9,6 +9,7 @@ import { CertificateDisplayComponent } from './certificate-display/certificate-d
 import { CertificateRequestsDisplayComponent } from './certificate-requests-display/certificate-requests-display.component';
 import { ValidityComponent } from './validity/validity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserNavbarComponent,
     CertificateDisplayComponent,
     CertificateRequestsDisplayComponent,
-    ValidityComponent
+    ValidityComponent,
+    CreateCertificateComponent
     
   ],
   imports: [
@@ -33,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CertificateDisplayComponent,
     CertificateRequestsDisplayComponent,
     ValidityComponent,
+    CreateCertificateComponent
     
   ]
 })

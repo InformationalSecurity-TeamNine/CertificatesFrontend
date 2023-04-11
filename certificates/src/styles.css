@@ -7,6 +7,10 @@
     background-color:#105a8f;
 }
 
+.dark-border{
+    border:2px solid #073e66;
+}
+
 .navbar-text{
     color:white;
     font-size: 20px;

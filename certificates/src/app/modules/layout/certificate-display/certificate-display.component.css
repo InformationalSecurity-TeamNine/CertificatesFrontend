@@ -12,3 +12,15 @@ th{
 td{
     padding: 20px 10px;
 }
+
+.table-wrapper-scroll-y 
+{
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+
+.my-custom-scrollbar
+{
+    display: block;
+}

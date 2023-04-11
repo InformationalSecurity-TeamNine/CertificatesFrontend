@@ -17,5 +17,6 @@ export interface PastRequests{
     id?:number,
     username: string,
     status: string,
-    type: string
+    type: string,
+    declineReason:string
 }
