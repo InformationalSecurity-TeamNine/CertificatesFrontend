@@ -57,6 +57,7 @@ export class CertificateWithdrawDisplayComponent {
         alert('Please fulfill every field.')
         return;
       }
+      if(this.certificateForm.value.reason.trim() === '') {alert('Please enter a reason.');return;}
      
       this.certificateService.withdraw(Number(this.certificateForm.value.id), this.certificateForm.value.reason).subscribe({
         next:(result) =>{
