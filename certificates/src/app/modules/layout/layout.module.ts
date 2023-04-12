@@ -40,7 +40,8 @@ import { MyInfoComponent } from './my-info/my-info.component';
     CertificateRequestsDisplayComponent,
     ValidityComponent,
     CreateCertificateComponent,
-    CertificateWithdrawDisplayComponent
+    CertificateWithdrawDisplayComponent,
+    MyInfoComponent
     
   ]
 })
