@@ -1,19 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { BehaviorSubject, Observable, Observer } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 
-import { Certificate, PastRequests } from 'src/app/models/Certificates';
+import { Certificate, CertificateWithdrawReturn, PastRequests, WithdrawnCertificate } from 'src/app/models/Certificates';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CertificateService {
 
+  private certificateCreated$ = new BehaviorSubject<boolean>(false);
+  certificateCreatedValue$ = this.certificateCreated$.asObservable();
+
+
+  setCertificateCreated(created: boolean) {
+    this.certificateCreated$.next(created);
+  }
+
+  private certificateWithdrawn$ = new BehaviorSubject<boolean>(false);
+  certificateWithdrawnValue$ = this.certificateWithdrawn$.asObservable();
+
+
+  setCertificateWithdrawn(withdrawn: boolean) {
+    this.certificateWithdrawn$.next(withdrawn);
+  }
   constructor(private http: HttpClient) { }
 
   getAll() : Observable<Certificate[]> {
     return this.http.get<Certificate[]>(environment.apiHost + "api/certificate")
+  }
+
+  getAllWithdrawn() : Observable<WithdrawnCertificate[]> {
+    return this.http.get<WithdrawnCertificate[]>(environment.apiHost + "api/certificate/withdrawn/")
   }
 
   getAllRequests() : Observable<PastRequests[]> {
@@ -31,6 +50,12 @@ export class CertificateService {
       issuerSN: issuerSN,
       type: type,
       time: date
+    });
+  }
+
+  withdraw(id:number, reason: string): Observable<CertificateWithdrawReturn>{
+    return this.http.put<CertificateWithdrawReturn>(environment.apiHost + "api/certificate/withdraw/" + id, {
+      reason: reason
     });
   }
 }

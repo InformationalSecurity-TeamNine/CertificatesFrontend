@@ -3,14 +3,17 @@
       <a class="nav-button" href="#">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-button" [routerLink]="['certificate-requests']">Certificate Requests</a>
+      <a class="nav-button" [routerLink]="['certificate-requests']">Requests</a>
     </li>
     <li class="nav-item">
-        <a class="nav-button" [routerLink]="['certificate-validity']">Certificate Validity</a>
+        <a class="nav-button" [routerLink]="['certificate-validity']">Validity</a>
     </li>
     <li class="nav-item">
-      <a class="nav-button" [routerLink]="['certificate-create']">Create Certificate</a>
-  </li>
+      <a class="nav-button" [routerLink]="['certificate-create']">Create</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-button" [routerLink]="['certificate-withdrawn']">Withdraw</a>
+    </li>
     <li class="nav-item">
         <button class="logout-button" type="button" id="logout-button" (click)="logout()" id="logout">Log Out</button>
     </li>
