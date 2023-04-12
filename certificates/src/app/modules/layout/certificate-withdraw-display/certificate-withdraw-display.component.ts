@@ -32,6 +32,13 @@ export class CertificateWithdrawDisplayComponent {
           this.getWithdrawn();
           this.withdrawnValue = !result;
         }
+      );
+      this.certificateService.selectedCertificateValue$.subscribe(
+        (value) =>{
+          if(value !== null && value !== undefined){
+            this.certificateForm.controls['id'].setValue(String(value.id));
+          }
+        }
       )
 
   }

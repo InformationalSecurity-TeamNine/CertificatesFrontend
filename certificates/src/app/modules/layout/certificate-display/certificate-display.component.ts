@@ -40,6 +40,7 @@ export class CertificateDisplayComponent implements OnInit{
 
   showCertificate(certificate: Certificate):void{
     console.log(certificate);
+    this.certificateService.setSelectedCertificate(certificate);
   }
 
 

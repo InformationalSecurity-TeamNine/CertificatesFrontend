@@ -7,31 +7,81 @@
     </div>
 
     <div class="row">
-        <div class="col-12 mt-3">
+        <div class="col-md-6 col-12 mt-3">
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
               <table class="table table-hover table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col">Id</th>
                       <th scope="col">Requester</th>
                       <th scope="col">Status</th>
                       <th scope="col">Type</th>
                       <th scope="col">Decline Reason</th>
+                      <th scope="col">Issuer</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let certificate of certificates;index as i" (click)="showRequest(certificate)">
                       <th>{{i + 1}}</th>
+                      <td>{{this.certificate.id}}</td>
                       <td>{{this.certificate.username}}</td>
                       <td>{{this.certificate.status}}</td>
                       <td>{{this.certificate.type}}</td>
                       <td *ngIf="this.certificate.declineReason">{{this.certificate.declineReason}}</td>
                       <td *ngIf="!this.certificate.declineReason">/</td>
+                      <td >{{this.certificate.issuerUsername}}</td>
                     </tr>
                     
                   </tbody>
                 </table>
             </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="row my-3 mx-2 text-center create-form p-5 dark-border">
+            <div class="col-12">
+              <div class="row text-center mb-4">
+                <div class="col-12">
+                  <h2>Manage Requests</h2>
+                </div>
+              </div>
+                <form
+                create
+                [formGroup]="requestForm"
+                (ngSubmit)="acceptDecline()"
+                >
+                    <div class="form-group">
+                      <label for="id" class="mb-2">Enter Request ID</label>
+                      <input type="text" class="form-control mb-5" name="id" id="id" placeholder="1" formControlName="id">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-6">
+                          <button type="button" class="certificates-button" id="Accept" (click)="acceptPressed()">Accept</button>
+                        </div>
+                        <div class="col-6">
+
+                          <button type="button" class="certificates-button" id="Decline" (click)="declinePressed()">Decline</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group" *ngIf="showDeclineReason">
+                      <label for="reason" class="my-3">Enter Reason</label>
+                      <input type="text" class="form-control mb-5" id="reason" formControlName="reason"/>
+                  </div>
+                    <div class="form-group mt-2">
+                        <button type="submit" class="certificates-button" id="confirmLogin" *ngIf="showDeclineReason">Confirm</button>
+                    </div>
+                    <div class="form-group mt-2">
+                        <div class="alert alert-danger" role="alert" *ngIf="this.hasError">
+                            {{this.errorMessage}}
+                          </div>
+                    </div>
+                  </form>
+    
+            </div>
+        </div>
         </div>
     </div>
 

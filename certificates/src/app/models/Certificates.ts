@@ -18,7 +18,8 @@ export interface PastRequests{
     username: string,
     status: string,
     type: string,
-    declineReason:string
+    declineReason:string,
+    issuerUsername:string
 }
 
 export interface CertificateWithdrawReturn{
@@ -32,4 +33,9 @@ export interface WithdrawnCertificate{
     withdrawDate: Date,
     userEmail: string,
     wasChild: boolean
+}
+
+export interface DeclineRequestDTO{
+    requestId: number,
+    reason: string
 }
