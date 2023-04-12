@@ -57,6 +57,7 @@ export class CreateCertificateComponent implements OnInit {
             this.certificateForm.reset();
             if(this.role === 'ADMIN') {this.certificateForm.value.type = 'ROOT';this.selectedType = 'ROOT';}
             else {this.certificateForm.value.type = 'INTERMEDIATE';this.selectedType = 'INTERMEDIATE';}
+            this.certificateService.setCertificateCreated(true);
             
         },
         error: (customError: HttpErrorResponse) =>{

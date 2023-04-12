@@ -17,17 +17,27 @@ export class CertificateDisplayComponent implements OnInit{
   }
   ngOnInit(): void {
     
+    this.getCertificates();
+    this.certificateService.certificateCreatedValue$.subscribe((result) =>{
+      if(result === true){
+          this.getCertificates();
+          this.certificateService.setCertificateCreated(false);
+      }
+    });
+
+  }
+  private getCertificates() {
     this.certificateService.getAll().subscribe({
-      next:(result)=>{
+      next: (result) => {
         this.certificates = result;
         this.hasLoaded = true;
       },
-      error:(error) =>{
+      error: (error) => {
         console.log(error);
       }
-    })
-
+    });
   }
+
   showCertificate(certificate: Certificate):void{
     console.log(certificate);
   }

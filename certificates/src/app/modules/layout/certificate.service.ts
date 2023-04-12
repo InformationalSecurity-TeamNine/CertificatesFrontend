@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { BehaviorSubject, Observable, Observer } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 
 import { Certificate, PastRequests } from 'src/app/models/Certificates';
@@ -10,6 +10,13 @@ import { Certificate, PastRequests } from 'src/app/models/Certificates';
 })
 export class CertificateService {
 
+  private certificateCreated$ = new BehaviorSubject<boolean>(false);
+  certificateCreatedValue$ = this.certificateCreated$.asObservable();
+
+
+  setCertificateCreated(created: boolean) {
+    this.certificateCreated$.next(created);
+  }
   constructor(private http: HttpClient) { }
 
   getAll() : Observable<Certificate[]> {
