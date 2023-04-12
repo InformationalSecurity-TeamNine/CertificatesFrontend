@@ -29,6 +29,13 @@ export class CreateCertificateComponent implements OnInit {
     if(this.role === 'ADMIN')  this.selectedType = 'ROOT';
     else this.selectedType = 'INTERMEDIATE';
 
+    this.certificateService.selectedCertificateValue$.subscribe(
+      (value) =>{
+        if(value !== null && value !== undefined)
+          this.certificateForm.controls['serialNumber'].setValue(value.serialNumber);
+      }
+    )
+
   }
 
   constructor(private authenticationService: AuthenticationService, private certificateService: CertificateService){
