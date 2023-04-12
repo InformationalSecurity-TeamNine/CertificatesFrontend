@@ -20,3 +20,16 @@ export interface PastRequests{
     type: string,
     declineReason:string
 }
+
+export interface CertificateWithdrawReturn{
+    certificateId: number,
+    reason: string
+}
+
+export interface WithdrawnCertificate{
+    serialNumber: string,
+    reason: string,
+    withdrawDate: Date,
+    userEmail: string,
+    wasChild: boolean
+}
