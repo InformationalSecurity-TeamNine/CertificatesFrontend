@@ -11,6 +11,7 @@ import { ValidityComponent } from './validity/validity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { CertificateWithdrawDisplayComponent } from './certificate-withdraw-display/certificate-withdraw-display.component';
+import { MyInfoComponent } from './my-info/my-info.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CertificateWithdrawDisplayComponent } from './certificate-withdraw-disp
     CertificateRequestsDisplayComponent,
     ValidityComponent,
     CreateCertificateComponent,
-    CertificateWithdrawDisplayComponent
+    CertificateWithdrawDisplayComponent,
+    MyInfoComponent
     
   ],
   imports: [

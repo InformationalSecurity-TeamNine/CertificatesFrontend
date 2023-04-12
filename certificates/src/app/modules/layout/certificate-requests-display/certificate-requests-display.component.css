@@ -23,3 +23,9 @@ td{
 {
     display: block;
 }
+
+decline-button:hover{
+    color:white;
+    background-color: red;
+    
+}

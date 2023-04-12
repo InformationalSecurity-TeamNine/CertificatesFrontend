@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Observer } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 
-import { Certificate, CertificateWithdrawReturn, PastRequests, WithdrawnCertificate } from 'src/app/models/Certificates';
+import { Certificate, CertificateWithdrawReturn, DeclineRequestDTO, PastRequests, WithdrawnCertificate } from 'src/app/models/Certificates';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,14 @@ export class CertificateService {
 
   setCertificateWithdrawn(withdrawn: boolean) {
     this.certificateWithdrawn$.next(withdrawn);
+  }
+
+  private selectedCertificate$ = new BehaviorSubject<Certificate>(null);
+  selectedCertificateValue$ = this.selectedCertificate$.asObservable();
+
+
+  setSelectedCertificate(selectedCertificate: Certificate) {
+    this.selectedCertificate$.next(selectedCertificate);
   }
   constructor(private http: HttpClient) { }
 
@@ -55,6 +63,15 @@ export class CertificateService {
 
   withdraw(id:number, reason: string): Observable<CertificateWithdrawReturn>{
     return this.http.put<CertificateWithdrawReturn>(environment.apiHost + "api/certificate/withdraw/" + id, {
+      reason: reason
+    });
+  }
+
+  acceptRequest(id:number): Observable<string>{
+    return this.http.put<string>(environment.apiHost + "api/certificate/accept-request/" + id, {});
+  }
+  declineRequest(id:number, reason: string): Observable<DeclineRequestDTO>{
+    return this.http.put<DeclineRequestDTO>(environment.apiHost + "api/certificate/decline-request/" + id, {
       reason: reason
     });
   }

@@ -28,6 +28,7 @@ export class CreateCertificateComponent implements OnInit {
     this.role = this.authenticationService.getRole();
     if(this.role === 'ADMIN')  this.selectedType = 'ROOT';
     else this.selectedType = 'INTERMEDIATE';
+
   }
 
   constructor(private authenticationService: AuthenticationService, private certificateService: CertificateService){
