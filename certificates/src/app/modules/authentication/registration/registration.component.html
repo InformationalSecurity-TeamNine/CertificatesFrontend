@@ -47,6 +47,21 @@
                             <label for="passwordRepet" class="label-reg ">Repeat password</label>
                             <input type="password" formControlName="repeatedPassword" class="form-control" id="passwordRepet" placeholder="Password123!">
                         </div>
+                        <div class="mb-3 space">
+                            <label class="label-reg ">Verify with</label>
+                            <div class="form-check">
+                                <input class="form-check-input" formControlName="verifyType" value="EMAIL" [ngModel]="Type" type="radio" name="verifyType" id="EmailCheck" checked>
+                                <label class="form-check-label" for="EmailCheck">
+                                  EMAIL
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" formControlName="verifyType" value="SMS" [ngModel]="Type" type="radio" name="verifyType" id="SmsCheck">
+                                <label class="form-check-label" for="SmsCheck">
+                                  SMS
+                                </label>
+                              </div>
+                        </div>
                       
                     </div>
 

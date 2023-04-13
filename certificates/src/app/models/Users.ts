@@ -5,7 +5,8 @@ export interface User{
     telephoneNumber:string,
     email:string,
     password:string,
-    repeatPassword:string
+    repeatPassword:string,
+    verifyType:string
 }
 
 export interface RegisteredUser{

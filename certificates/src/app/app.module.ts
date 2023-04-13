@@ -6,6 +6,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './modules/authentication/interceptor/interceptor';
 import { LayoutModule } from './modules/layout/layout.module';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LayoutModule } from './modules/layout/layout.module';
     LayoutModule,
     AuthenticationModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ {  provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },],
   bootstrap: [AppComponent]

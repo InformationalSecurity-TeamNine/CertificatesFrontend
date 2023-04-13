@@ -4,18 +4,21 @@ import { UserService } from '../../unregistered-user/services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/Users';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+  Type = 'EMAIL';
   registerForm = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(13)]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(14)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    verifyType: new FormControl('', [Validators.required]),
     repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
@@ -39,6 +42,7 @@ export class RegistrationComponent {
         surname : this.registerForm.value.surname,
         telephoneNumber : this.registerForm.value.phoneNumber,
         email : this.registerForm.value.email,
+        verifyType: this.registerForm.value.verifyType,
         password : this.registerForm.value.password,
         repeatPassword: this.registerForm.value.repeatedPassword
       };
