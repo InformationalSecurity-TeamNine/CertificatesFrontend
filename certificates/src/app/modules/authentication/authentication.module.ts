@@ -5,17 +5,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
+import { EnterCodeComponent } from './enter-code/enter-code.component';
+
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent],
+  declarations: [LoginComponent, RegistrationComponent, EnterCodeComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule
+    FormsModule,
   ],
-  exports:[LoginComponent, RegistrationComponent]
+  exports:[LoginComponent, RegistrationComponent, EnterCodeComponent]
 })
 export class AuthenticationModule { }
