@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../unregistered-user/services/user.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { User } from 'src/app/models/Users';
-import { EnterCodeComponent } from '../enter-code/enter-code.component';
+
 
 
 @Component({
@@ -24,7 +23,7 @@ export class RegistrationComponent {
     repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
-  constructor( private matDialog: MatDialog, private userService: UserService, private router: Router){
+  constructor( private userService: UserService, private router: Router){
 
   }
 
@@ -54,14 +53,7 @@ export class RegistrationComponent {
           next: (result) => {
             alert('Successfully registered')
             if (user.verifyType == "SMS"){
-              const dialogConfig = new MatDialogConfig();
-          dialogConfig.disableClose = true;
-          dialogConfig.id = "edit-password";
-          dialogConfig.height = "300px";
-          dialogConfig.width = "450px";
-          dialogConfig.position = {bottom:'1000px'}
-
-          const modalDialog = this.matDialog.open(EnterCodeComponent, dialogConfig);
+              
             } 
             console.log(result);
           },
