@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import { Certificate } from 'src/app/models/Certificates';
 import { CertificateService } from '../certificate.service';
 
@@ -11,12 +11,13 @@ export class CertificateDisplayComponent implements OnInit{
 
   certificates: Certificate[];
   hasLoaded: boolean = false;
-  constructor(private certificateService: CertificateService){
+  selected: Certificate | null;
+  constructor(private certificateService: CertificateService, private elementRef: ElementRef){
 
 
   }
   ngOnInit(): void {
-    
+    this.selected = null;
     this.getCertificates();
     this.certificateService.certificateCreatedValue$.subscribe((result) =>{
       if(result === true){
@@ -43,6 +44,26 @@ export class CertificateDisplayComponent implements OnInit{
     this.certificateService.setSelectedCertificate(certificate);
   }
 
+  //(click)="showCertificate(certificate)" ovo ide u tr ngFor sta vec
 
 
+  onRowClick(event: MouseEvent, item: any){
+    this.certificateService.setSelectedCertificate(<Certificate>item);
+    this.selected = <Certificate>item;
+    console.log(item as Certificate);
+    event.stopPropagation();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent){
+    if(!this.elementRef.nativeElement.contains(event.target)){
+      this.certificateService.setSelectedCertificate(null);
+      this.selected = null;
+    }
+  }
+
+
+  downloadCertificate() {
+    console.log("bruh");
+  }
 }

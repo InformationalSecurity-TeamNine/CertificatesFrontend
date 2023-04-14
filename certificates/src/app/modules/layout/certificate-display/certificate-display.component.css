@@ -4,8 +4,13 @@
 }
 tbody tr:hover{
     cursor: pointer;
-    background-color: rgb(181, 179, 179);
 }
+
+tr.selected {
+  background-color: lightgrey;
+}
+
+
 th{
     padding: 20px 10px;
 }
@@ -13,7 +18,7 @@ td{
     padding: 20px 10px;
 }
 
-.table-wrapper-scroll-y 
+.table-wrapper-scroll-y
 {
     position: relative;
     height: 400px;
