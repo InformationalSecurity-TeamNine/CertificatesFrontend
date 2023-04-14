@@ -52,7 +52,7 @@ export class CertificateService {
   }
 
   create(date:Date, type:string, issuerSN: string):Observable<Certificate>{
-    return this.http.post<Certificate>(environment.apiHost + "api/certificate/", 
+    return this.http.post<Certificate>(environment.apiHost + "api/certificate/",
     {
       id: 0,
       issuerSN: issuerSN,
@@ -74,5 +74,10 @@ export class CertificateService {
     return this.http.put<DeclineRequestDTO>(environment.apiHost + "api/certificate/decline-request/" + id, {
       reason: reason
     });
+  }
+
+
+  downloadCertificate(id: number) {
+    return this.http.get(environment.apiHost + `api/certificate/download/${id}`, {responseType: 'blob'});
   }
 }

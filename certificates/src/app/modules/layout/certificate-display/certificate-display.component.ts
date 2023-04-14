@@ -64,6 +64,32 @@ export class CertificateDisplayComponent implements OnInit{
 
 
   downloadCertificate() {
-    console.log("bruh");
+    this.certificateService.downloadCertificate(this.selected.id).subscribe({
+        next: (res) => {
+
+          const a = document.createElement('a');
+          const objectUrl = URL.createObjectURL(res);
+          a.href = objectUrl;
+          a.download = "Certificate.crt";
+          a.click();
+          URL.revokeObjectURL(objectUrl);
+
+        },
+
+        error: (error) => {
+
+          console.log(error);
+
+        }
+
+      });
+
+
+
   }
+
+
 }
+
+
+
