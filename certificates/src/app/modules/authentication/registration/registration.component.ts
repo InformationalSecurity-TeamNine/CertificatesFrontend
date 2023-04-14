@@ -37,7 +37,6 @@ export class RegistrationComponent {
     }
     console.log(this.registerForm)
      if(this.registerForm.valid){
-      alert("Successfully registered!");
       const user: User = {
         name : this.registerForm.value.name,
         surname : this.registerForm.value.surname,
@@ -52,9 +51,7 @@ export class RegistrationComponent {
         {
           next: (result) => {
             alert('Successfully registered')
-            if (user.verifyType == "SMS"){
-              
-            } 
+             
             console.log(result);
           },
           error: (error) => {

@@ -16,3 +16,12 @@ export interface RegisteredUser{
     telephoneNumber:string,
     email:string,
 }
+export interface ResetType{
+    verifyType:String
+}
+
+export interface PasswordReset{
+    code:string,
+    password:string,
+    repeatPassword:string
+}
