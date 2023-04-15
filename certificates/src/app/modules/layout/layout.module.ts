@@ -13,6 +13,7 @@ import { CreateCertificateComponent } from './create-certificate/create-certific
 import { CertificateWithdrawDisplayComponent } from './certificate-withdraw-display/certificate-withdraw-display.component';
 import { MyInfoComponent } from './my-info/my-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SendResetCodeComponent } from './send-reset-code/send-reset-code.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CreateCertificateComponent,
     CertificateWithdrawDisplayComponent,
     MyInfoComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SendResetCodeComponent
     
   ],
   imports: [
@@ -44,7 +46,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CreateCertificateComponent,
     CertificateWithdrawDisplayComponent,
     MyInfoComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SendResetCodeComponent
     
   ]
 })

@@ -1,0 +1,35 @@
+
+<div id="content-wrapper">
+    <div id="header">
+        <h1 id="title">Enter password credentials:</h1>
+    </div>
+    <div id="body">
+        <form [formGroup]="CodeForm">
+        
+            <p class="textLabel"><label class="right-margin">Email:</label></p>
+            <input type="text" formControlName="email" class="infoInput" name="email" id="email"
+                placeholder="marko@gmail.com">
+                <div class="verify-container">
+                    <h3 >Verify with</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="verifyType" value="EMAIL" [ngModel]="Type" type="radio" name="verifyType" id="EmailCheck" checked>
+                        <label class="" for="EmailCheck">
+                          EMAIL
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" formControlName="verifyType" value="SMS" [ngModel]="Type" type="radio" name="verifyType" id="SmsCheck">
+                        <label class="" for="SmsCheck">
+                          SMS
+                        </label>
+                      </div>
+                </div>    
+                
+                
+        </form>
+    </div>
+    <div id="footer">
+        <button  mat-raised-button id="action-button" (click)="send()" [routerLink]="['/reset-password/' + CodeForm.value.email]" >Send code</button>
+    </div>
+
+</div>

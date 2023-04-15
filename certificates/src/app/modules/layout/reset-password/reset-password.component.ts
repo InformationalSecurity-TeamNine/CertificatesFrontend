@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../unregistered-user/services/user.service';
 import { PasswordReset, ResetType } from 'src/app/models/Users';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,30 +11,33 @@ import { PasswordReset, ResetType } from 'src/app/models/Users';
 })
 export class ResetPasswordComponent {
   Type:string;
-  passwordReset: PasswordReset;
-  resetType: ResetType;
+  passwordReset: PasswordReset = {
+    code: "",
+    password: "",
+    repeatPassword: ""
+  }
+
   CodeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
     verifyCode: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(6)]),
     password: new FormControl('', [Validators.required, Validators.minLength(10)]),
     repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
 
   });
-  constructor( private userService: UserService ) {}
+  constructor( private userService: UserService, private route: ActivatedRoute ) {}
   
-  sendResetCode(){
   
-    
-    
-  }
   reset(){
     this.passwordReset.code = this.CodeForm.value.verifyCode
     this.passwordReset.password = this.CodeForm.value.password
     this.passwordReset.repeatPassword = this.CodeForm.value.repeatedPassword
-    this.userService.reset(this.CodeForm.value.email, this.passwordReset).subscribe({
+    this.route.params.subscribe((params) => {
+      let email:string = params['email'];
+    this.userService.reset(email, this.passwordReset).subscribe({
       next: (res) => {
+        alert("Succesfully reseted password!")
         
       }
     })
-  }
+  });
+}
 }
