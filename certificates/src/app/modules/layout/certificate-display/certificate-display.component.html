@@ -1,13 +1,13 @@
-<div class="home" *ngIf="hasLoaded">
+<div class="home dark-border mx-5 mt-3" *ngIf="hasLoaded">
 
     <div class="row text-center">
-        <div class="col-12 mt-5">
+        <div class="col-12 my-3">
             <h1>All Certificates</h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-12 mt-3">
+        <div class="col-12">
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
               <table class="table table-hover table-bordered">
                   <thead>
@@ -22,7 +22,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let certificate of certificates;index as i" (click)="showCertificate(certificate)">
+                    <tr *ngFor="let certificate of certificates;index as i" (click)="onRowClick($event, certificate)"
+                        [class.selected]="certificate === selected">
                       <th>{{i + 1}}</th>
                       <td>{{this.certificate.serialNumber}}</td>
                       <td>{{this.certificate.issuedAt | date : 'dd/MM/yyyy HH:mm'}}</td>
@@ -31,11 +32,18 @@
                       <td>{{this.certificate.status}}</td>
                       <td>{{this.certificate.type}}</td>
                     </tr>
-                    
+
                   </tbody>
                 </table>
               </div>
         </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center my-3">
+        <button class="col-1" [ngClass]="selected ? 'certificates-button' : 'certificates-button-disabled'"
+                [disabled]="!selected" (click)="downloadCertificate()">Download certificate</button>
+      </div>
     </div>
 
 </div>
