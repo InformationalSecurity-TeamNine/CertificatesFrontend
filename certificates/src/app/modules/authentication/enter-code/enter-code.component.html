@@ -1,0 +1,17 @@
+<div id="content-wrapper">
+    <div id="header">
+        <h1 id="title">Enter verify code:</h1>
+    </div>
+    <div id="body">
+        <form [formGroup]="CodeForm">
+            <p class="textLabel"><label class="right-margin">Verify Code</label></p>
+            <input type="text" formControlName="verifyCode" class="infoInput" name="verify" id="verify"
+                placeholder="Verify Code">
+        </form>
+    </div>
+    <div id="footer">
+        <button  mat-raised-button id="action-button" (click)="verify()">Verify</button>
+        <button  mat-raised-button id="action-button" [routerLink]="['/register']">Back</button>
+    </div>
+
+</div>

@@ -7,9 +7,14 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './modules/authentication/interceptor/interceptor';
 import { LayoutModule } from './modules/layout/layout.module';
 
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
+    
       
   ],
   imports: [
@@ -17,7 +22,8 @@ import { LayoutModule } from './modules/layout/layout.module';
     LayoutModule,
     AuthenticationModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [ {  provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },],
   bootstrap: [AppComponent]
