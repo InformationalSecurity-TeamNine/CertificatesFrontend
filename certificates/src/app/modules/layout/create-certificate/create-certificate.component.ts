@@ -54,11 +54,12 @@ export class CreateCertificateComponent implements OnInit {
       }
       let type = this.certificateForm.value.type;
       if(type === '' && this.role === 'ADMIN') type = 'ROOT';
-      const sn = this.certificateForm.value.serialNumber;
+      let sn = this.certificateForm.value.serialNumber;
       if(type !== 'ROOT' && sn.trim()===''){
         alert('Please enter a valid Serial number');
         return;
       }
+      if(sn === null || sn === undefined) {sn = '';}
       this.certificateService.create(date, type, sn).subscribe({
         next:(result) =>{
             alert('Successfully created a certificate');
