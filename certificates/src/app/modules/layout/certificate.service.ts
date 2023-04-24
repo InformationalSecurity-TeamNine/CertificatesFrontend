@@ -80,4 +80,8 @@ export class CertificateService {
   downloadCertificate(id: number) {
     return this.http.get(environment.apiHost + `api/certificate/download/${id}`, {responseType: 'blob'});
   }
+
+  isValidUploaded(formData: FormData): Observable<boolean> {
+    return this.http.post<boolean>(environment.apiHost + 'api/certificate/validate-upload', formData);
+  }
 }
