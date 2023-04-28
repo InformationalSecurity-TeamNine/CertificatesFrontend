@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UserService } from '../../unregistered-user/services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class EnterCodeComponent {
   CodeForm = new FormGroup({
     verifyCode: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(6)])
   });
-  constructor( private userService: UserService ) {}
+  constructor( private userService: UserService, private router: Router ) {}
 
   back(){
     
@@ -21,7 +22,7 @@ export class EnterCodeComponent {
   verify(){
     this.userService.activate(this.CodeForm.value.verifyCode).subscribe({
       next: (res) => {
-        
+        this.router.navigate(['/login']);
       }
     })
   }

@@ -12,6 +12,7 @@ import { ValidityComponent } from "./modules/layout/validity/validity.component"
 import { EnterCodeComponent } from "./modules/authentication/enter-code/enter-code.component";
 import { ResetPasswordComponent } from "./modules/layout/reset-password/reset-password.component";
 import { SendResetCodeComponent } from "./modules/layout/send-reset-code/send-reset-code.component";
+import { VerifyLoginComponent } from "./modules/authentication/verify-login/verify-login.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent,
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path:'certificate-validity', component:ValidityComponent},
     {path:'certificate-create', component:CreateCertificateComponent},
     {path:'certificate-withdrawn', component:CertificateWithdrawDisplayComponent},
+    {path:'login-verify/:email', component:VerifyLoginComponent},
     {path:'', redirectTo: '/home', pathMatch:'full'},
     {path:'**', component:HomeComponent}
 

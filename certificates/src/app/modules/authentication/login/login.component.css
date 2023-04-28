@@ -18,6 +18,12 @@
     color: white;
     text-decoration: underline;
 }
+.no-pad{
+    padding-top: 0;
+}
+
+
+
 .btn-reset:hover{
     border:2px solid rgba(255, 255, 255, 0.2);
     color:white;
@@ -69,10 +75,15 @@ button:hover{
     color: #011320;
 }
 
+
 input{
     border: none;
     border-bottom: 2px solid;
     font-size: 18px;
+}
+input[type="radio"]{
+    border: #07090b 1px solid;
+
 }
 
 
