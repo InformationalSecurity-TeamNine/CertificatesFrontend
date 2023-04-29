@@ -9,19 +9,84 @@ import { CertificateService } from '../certificate.service';
   templateUrl: './validity.component.html',
   styleUrls: ['./validity.component.css']
 })
+
+
 export class ValidityComponent {
+
+
+  file: File
+  isValidUpload: boolean = false;
+  isShownUpload: boolean = false;
 
   isValidId: boolean = false;
   isShownId: boolean = false;
+
   errorMessage: string = '';
+  errorMessageUpload: string = '';
+
   idValidity = new FormGroup(
     {
       id: new FormControl('', [Validators.required, Validators.minLength(1)])
     }
   );
+
+  uploadValidity = new FormGroup(
+    {
+      upload: new FormControl(null, [Validators.required])
+    }
+  );
+
   constructor(private certificateService: CertificateService){
 
   }
+
+  getValidityByUpload() {
+    this.isShownUpload = false;
+    this.errorMessage = '';
+    if(!this.file){
+      alert('Please insert a file;')
+      return;
+    }
+
+
+
+    const formData = new FormData();
+    formData.append('file', this.file);
+
+    this.certificateService.isValidUploaded(formData).subscribe({
+      next:(result) =>{
+        this.isValidUpload = result;
+        this.isShownUpload = true;
+      },
+      error:(notFound: HttpErrorResponse)=>{
+        this.errorMessageUpload = notFound.error.message;
+      }
+    })
+
+
+  }
+  onFileSelected(event: any) {
+    const MAX_FILE_SIZE_BYTES = 1073741824;
+    const file: File = event.target.files[0]
+    const fileName: string = file.name;
+
+    console.log(fileName)
+    const fileExtension: string = fileName.split('.').pop().toLowerCase();
+    console.log(fileExtension)
+    if(fileExtension !== 'crt'){
+      alert('The selecgted file must have a ".crt" extension');
+      this.uploadValidity.get('upload').setValue(null);
+      return;
+    }
+
+    if(file.size > MAX_FILE_SIZE_BYTES){
+      alert('File size is too large, please select a file smaller than 1GB,')
+      return;
+    }
+
+    this.file = event.target.files[0];
+  }
+
 
   getValidityById(){
     this.isShownId = false;
@@ -40,4 +105,7 @@ export class ValidityComponent {
       }
     })
   }
+
+
+
 }
