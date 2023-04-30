@@ -65,14 +65,14 @@
 
         <div class="col-12 m-3">
           <div class="alert alert-primary" role="alert" *ngIf=" this.isShownUpload && this.isValidUpload===true">
-            The certificate with the given id is <b>VALID</b>
+            The certificate is <b>VALID</b>
           </div>
 
           <div class="alert alert-danger" role="alert" *ngIf=" this.isShownUpload && this.isValidUpload===false">
-            The certificate with the given id is <b>INVALID</b>
+            The certificate is <b>INVALID</b>
           </div>
 
-          <div class="alert alert-warning" role="alert" *ngIf="this.errorMessageUpload !==''">
+          <div class="alert alert-danger" role="alert" *ngIf="this.errorMessageUpload !==''">
             {{this.errorMessageUpload}}
           </div>
         </div>
