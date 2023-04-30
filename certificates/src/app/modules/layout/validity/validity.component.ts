@@ -37,14 +37,15 @@ export class ValidityComponent {
   );
 
   constructor(private certificateService: CertificateService){
-
+    this.file = null;
   }
 
   getValidityByUpload() {
     this.isShownUpload = false;
     this.errorMessageUpload = '';
     console.log(this.uploadValidity.get('upload'));
-    if(this.uploadValidity.get('upload').value == null){
+    if(this.uploadValidity.get('upload').value == null || this.file == null){
+      this.file = null;
       alert('Please insert a file;')
       return;
     }
@@ -75,12 +76,15 @@ export class ValidityComponent {
     const fileExtension: string = fileName.split('.').pop().toLowerCase();
     if(fileExtension !== 'crt'){
       alert('The selecgted file must have a ".crt" extension');
+      this.file = null;
       this.uploadValidity.get('upload').setValue(null);
       return;
     }
 
     if(file.size > MAX_FILE_SIZE_BYTES){
       alert('File size is too large, please select a file smaller than 1GB,')
+      this.file = null;
+      this.uploadValidity.get('upload').setValue(null);
       return;
     }
 
