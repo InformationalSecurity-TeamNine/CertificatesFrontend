@@ -42,8 +42,9 @@ export class ValidityComponent {
 
   getValidityByUpload() {
     this.isShownUpload = false;
-    this.errorMessage = '';
-    if(!this.file){
+    this.errorMessageUpload = '';
+    console.log(this.uploadValidity.get('upload'));
+    if(this.uploadValidity.get('upload').value == null){
       alert('Please insert a file;')
       return;
     }
@@ -58,8 +59,9 @@ export class ValidityComponent {
         this.isValidUpload = result;
         this.isShownUpload = true;
       },
-      error:(notFound: HttpErrorResponse)=>{
-        this.errorMessageUpload = notFound.error.message;
+      error:(errorResponse: HttpErrorResponse)=>{
+        console.log(errorResponse);
+        this.errorMessageUpload = errorResponse.error.message;
       }
     })
 
@@ -70,9 +72,7 @@ export class ValidityComponent {
     const file: File = event.target.files[0]
     const fileName: string = file.name;
 
-    console.log(fileName)
     const fileExtension: string = fileName.split('.').pop().toLowerCase();
-    console.log(fileExtension)
     if(fileExtension !== 'crt'){
       alert('The selecgted file must have a ".crt" extension');
       this.uploadValidity.get('upload').setValue(null);
