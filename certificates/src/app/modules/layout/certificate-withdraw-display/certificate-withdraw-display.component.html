@@ -1,0 +1,87 @@
+<div class="create-certificate">
+
+    <div class="row text-center my-5">
+        <div class="col-12">
+            <h1>Withdraw Certificate</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-12">
+                <div class="col-12 certs">
+                    <app-certificate-display></app-certificate-display>
+                </div>
+
+        </div>
+        <div class="col-md-5 col-12">
+
+            <div class="row my-3 mx-2 text-center create-form p-5 dark-border">
+                <div class="col-12">
+                    <div class="row text-center mb-4">
+                      <div class="col-12">
+                        <h2>Withdraw Certificates</h2>
+                      </div>
+                    </div>
+                    <form
+                    create
+                    [formGroup]="certificateForm"
+                    (ngSubmit)="withdraw()"
+                    >
+                        <div class="form-group">
+                          <label for="id" class="mb-2">Enter certificate ID</label>
+                          <input type="text" class="form-control mb-5" name="id" id="id" placeholder="1" formControlName="id">
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reason" class="my-3">Enter reason</label>
+                            <input type="text" class="form-control mb-5" id="reason" formControlName="reason"/>
+                          </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="certificates-button" id="confirmLogin">Withdraw</button>
+                        </div>
+                        <div class="form-group mt-2">
+                            <div class="alert alert-danger" role="alert" *ngIf="this.hasError">
+                                {{this.errorMessage}}
+                              </div>
+                        </div>
+                      </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 m-5">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar dark-border">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Serial Number</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Withdraw Date</th>
+                        <th scope="col">User Email</th>
+                        <th scope="col">Was a Child</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let certificate of withdrawnCertificates;index as i">
+                        <th>{{i + 1}}</th>
+                        <td>{{this.certificate.serialNumber}}</td>
+                        <td>{{this.certificate.reason}}</td>
+                        <td>{{this.certificate.withdrawDate |  date : 'dd/MM/yyyy HH:mm'}}</td>
+                        <td>{{this.certificate.userEmail}}</td>
+                        <td>{{this.certificate.wasChild}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+        </div>
+    </div>
+
+
+
+
+</div>
