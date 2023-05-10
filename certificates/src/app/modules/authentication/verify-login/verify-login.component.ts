@@ -4,6 +4,7 @@ import { UserService } from '../../unregistered-user/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { VerifyCode } from 'src/app/models/Login';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-verify-login',
@@ -33,7 +34,11 @@ export class VerifyLoginComponent {
         this.authenticationService.setUser();
         this.router.navigate(['/']);
         
-      }
+      },
+      error: (customError: HttpErrorResponse) =>{
+        alert(customError.error.message);
+    }
+      
     })
   });
 }

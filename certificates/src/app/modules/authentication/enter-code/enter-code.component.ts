@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UserService } from '../../unregistered-user/services/user.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -23,7 +24,10 @@ export class EnterCodeComponent {
     this.userService.activate(this.CodeForm.value.verifyCode).subscribe({
       next: (res) => {
         this.router.navigate(['/login']);
-      }
+      },
+      error: (customError: HttpErrorResponse) =>{
+       alert(customError.error.split('"')[3]);
+    }
     })
   }
 

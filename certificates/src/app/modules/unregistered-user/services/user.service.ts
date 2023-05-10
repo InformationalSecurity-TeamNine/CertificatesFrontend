@@ -14,15 +14,15 @@ export class UserService {
   register(user: User) : Observable<RegisteredUser> {
     return this.http.post<RegisteredUser>(environment.apiHost + "api/user/register", user)
   }
-  activate(activateCode: string): Observable<string>{
+  activate(activateCode: string): Observable<any>{
     return this.http.put(environment.apiHost + "api/user/activate/" + activateCode, HttpRequest, { responseType: 'text' })
   }
   
   sendResetCode(email: string, resetType: ResetType): Observable<any>{
     return this.http.post<any>(environment.apiHost + "api/user/"+ email + "/resetPassword/", resetType)
   }
-  reset(email: string, resetPassword: PasswordReset): Observable<any>{
-    return this.http.put<any>(environment.apiHost + "api/user/"+ email + "/resetPassword/", resetPassword)
+  reset(email: string, resetPassword: PasswordReset): Observable<string>{
+    return this.http.put(environment.apiHost + "api/user/"+ email + "/resetPassword/", resetPassword, {responseType: 'text'})
   }
 
   
