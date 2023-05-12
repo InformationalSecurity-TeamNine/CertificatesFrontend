@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { EnterCodeComponent } from './enter-code/enter-code.component';
-
+import { RecaptchaV3Module } from 'ng-recaptcha';
 
 
 
@@ -17,6 +17,8 @@ import { EnterCodeComponent } from './enter-code/enter-code.component';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    RecaptchaV3Module
+    
   ],
   exports:[LoginComponent, RegistrationComponent, EnterCodeComponent]
 })

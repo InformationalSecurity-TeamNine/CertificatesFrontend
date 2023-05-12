@@ -30,6 +30,12 @@ export class AuthenticationService {
 
   }
 
+  validateRecaptcha(recaptcha:string):Observable<boolean>{
+    return this.http.post<boolean>(environment.apiHost + 'api/user/recaptcha?g-recaptcha-response='+recaptcha, {
+      headers:this.headers,
+    });
+  }
+
   isLoggedIn(): boolean{
     return localStorage.getItem('user') != null;
   }

@@ -18,6 +18,7 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     }
   );
+  siteKey: string = '6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19';
   hasError = false;
 
   constructor(private router:Router,
@@ -32,12 +33,15 @@ export class LoginComponent {
     if(email === null || password === null || email === undefined || password == undefined)
       return;
 
-    this.authenticationService.login(email, password).subscribe({
-     
+    const token = grecaptcha.getResponse();
+    this.authenticationService.validateRecaptcha(token).subscribe({
+    
+
       next: (result) => {
-        localStorage.setItem('user', JSON.stringify(result["token"]));
-        this.authenticationService.setUser();
-        this.router.navigate(['/']);
+        if(result === true)
+          this.confirmLogin(email, password);
+        else
+          alert('Invalid recaptcha');
 
       },
       error : (error) =>{
@@ -48,5 +52,21 @@ export class LoginComponent {
 
     });
 
+  }
+
+  private confirmLogin(email: string, password: string) {
+    this.authenticationService.login(email, password).subscribe({
+      next: (result) => {
+        localStorage.setItem('user', JSON.stringify(result["token"]));
+        this.authenticationService.setUser();
+        this.router.navigate(['/']);
+
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          this.hasError = true;
+        }
+      }
+    });
   }
 }
