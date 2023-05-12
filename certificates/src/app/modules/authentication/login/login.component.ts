@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../../unregistered-user/services/user.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     }
   );
-  siteKey: string = '6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19';
   hasError = false;
 
   constructor(private router:Router,

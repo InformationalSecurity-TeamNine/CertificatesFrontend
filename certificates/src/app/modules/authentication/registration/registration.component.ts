@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../unregistered-user/services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/Users';
+import { AuthenticationService } from '../authentication.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -23,7 +25,7 @@ export class RegistrationComponent {
     repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
-  constructor( private userService: UserService, private router: Router){
+  constructor( private userService: UserService, private router: Router, private authenticationService: AuthenticationService){
 
   }
 
@@ -47,19 +49,43 @@ export class RegistrationComponent {
         repeatPassword: this.registerForm.value.repeatedPassword
       };
 
-      this.userService.register(user).subscribe(
-        {
-          next: (result) => {
-            alert('Successfully registered')
-             
-            console.log(result);
-          },
-          error: (error) => {
-            alert(error);
-            console.log(error);
-          }
-        }
-      );
+    //   const token = grecaptcha.getResponse();
+    // this.authenticationService.validateRecaptcha(token).subscribe({
+    
+
+    //   next: (result) => {
+    //     if(result === true)
+    //       this.confirmRegister(user);
+    //     else
+    //       alert('Invalid recaptcha');
+
+    //   },
+    //   error : (error) =>{
+    //     if(error instanceof HttpErrorResponse){
+    //       alert(error.error.message);
+    //     }
+    //   }
+
+    // });
+    // }
+    this.confirmRegister(user);
+
     }
+  }
+
+  private confirmRegister(user: User) {
+    this.userService.register(user).subscribe(
+      {
+        next: (result) => {
+          alert('Successfully registered');
+
+          console.log(result);
+        },
+        error: (error) => {
+          alert(error);
+          console.log(error);
+        }
+      }
+    );
   }
 }
