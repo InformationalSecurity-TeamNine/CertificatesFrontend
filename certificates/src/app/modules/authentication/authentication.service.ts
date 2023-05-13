@@ -15,6 +15,8 @@ export class AuthenticationService {
     'Content-Type': 'application/json',
     skip:'true',
   });
+  private readonly apiUrl = 'https://www.google.com/recaptcha/api/siteverify';
+  private readonly siteKey = '6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19';
 
   user$ = new BehaviorSubject(null);
   userState$ = this.user$.asObservable();
@@ -59,5 +61,11 @@ export class AuthenticationService {
 
   setUser(): void{
     this.user$.next(this.getRole());
+  }
+
+  validateRecaptcha(recaptcha:string):Observable<boolean>{
+    return this.http.post<boolean>(environment.apiHost + 'api/user/recaptcha?g-recaptcha-response='+recaptcha, {
+      headers:this.headers,
+    });
   }
 }

@@ -46,11 +46,16 @@
                         </label>
                       </div>
                 </div>
+                <div class="mb-3">
+                    
+                    <ngx-recaptcha2 name="recaptcha" formControlName="recaptcha" #captchaElem [siteKey]="sitekey"></ngx-recaptcha2>
+                </div>
 
             <div class="mb-3">
                 <button type="submit" class="button-style" id="confirmLogin">Login</button>
                 <h3 class="py-3"><a [routerLink]="['/register']" class="dark-blue-color">New Account? Register now! </a></h3>
             </div>
+            
             
          </form>
 
@@ -79,6 +84,5 @@
 
         </div>
     </div>
-
 </section>
 

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../unregistered-user/services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/Users';
+import { AuthenticationService } from '../authentication.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -20,10 +22,12 @@ export class RegistrationComponent {
     surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(10)]),
     verifyType: new FormControl('', [Validators.required]),
-    repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
+    repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    recaptcha: new FormControl('', [Validators.required])
   });
+  sitekey:string = "6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19";
 
-  constructor( private userService: UserService, private router: Router){
+  constructor( private userService: UserService, private router: Router, private authenticationService: AuthenticationService){
 
   }
 
@@ -35,7 +39,7 @@ export class RegistrationComponent {
       alert("Passwords don't match");
       return;
     }
-    console.log(this.registerForm)
+    if(this.registerForm.value.recaptcha == ''){alert('Please fill recaptha.');return;}
      if(this.registerForm.valid){
       const user: User = {
         name : this.registerForm.value.name,
@@ -46,20 +50,41 @@ export class RegistrationComponent {
         password : this.registerForm.value.password,
         repeatPassword: this.registerForm.value.repeatedPassword
       };
+      
+      const token = this.registerForm.value.recaptcha;
 
-      this.userService.register(user).subscribe(
-        {
-          next: (result) => {
-            alert('Successfully registered')
-             
-            console.log(result);
-          },
-          error: (error) => {
-            alert(error);
-            console.log(error);
-          }
+      this.authenticationService.validateRecaptcha(token).subscribe({
+        next: (result) => {
+          if(result === true)
+          this.validateRegister(user);
+        
+        else
+          alert('Invalid recaptcha');
+
+      },
+      error : (error) =>{
+        if(error instanceof HttpErrorResponse){
+          alert('Invalid recaptcha. Try again.');
         }
-      );
+      }
+    });
+
     }
+  }
+
+  private validateRegister(user: User) {
+    this.userService.register(user).subscribe(
+      {
+        next: (result) => {
+          alert('Successfully registered');
+
+          console.log(result);
+        },
+        error: (error) => {
+          alert(error);
+          console.log(error);
+        }
+      }
+    );
   }
 }
