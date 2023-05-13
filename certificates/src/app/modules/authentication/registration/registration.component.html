@@ -67,9 +67,16 @@
                         </div>
                       
                     </div>
-
+                
+                <div class="mb-3">
+                    <ngx-recaptcha2 name="recaptcha" formControlName="recaptcha" #captchaElem [siteKey]="sitekey"></ngx-recaptcha2>
+                </div>
                 <div class="mb-3 text-center">
                 <button type="submit" class="signup confirmation-button">Sign up</button>
+                </div>
+                <div class="mb-3">
+                    <div class="g-recaptcha" data-sitekey="6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19"></div>
+    
                 </div>
 
                 <div class="mb-3">

@@ -7,6 +7,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { EnterCodeComponent } from './enter-code/enter-code.component';
 import { VerifyLoginComponent } from './verify-login/verify-login.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 
@@ -18,6 +19,7 @@ import { VerifyLoginComponent } from './verify-login/verify-login.component';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    NgxCaptchaModule
   ],
   exports:[LoginComponent, RegistrationComponent, EnterCodeComponent, VerifyLoginComponent]
 })
