@@ -1,0 +1,30 @@
+<div id="content-wrapper" class="dark-blue-background text-light">
+    <div id="header">
+        <div class="row text-center mt-3">
+            <div class="col-12">
+                <h1 id="title">Enter verify code:</h1>
+
+            </div>
+        </div>
+    </div>
+    <div id="body">
+        <form [formGroup]="CodeForm">
+            <div class="mb-3">
+                <p class="textLabel"><label class="right-margin">Verify Code</label></p>
+                <input type="text" formControlName="verifyCode" class="infoInput" name="verify" id="verify"
+                    placeholder="Verify Code">
+            </div>
+            
+        </form>
+    </div>
+    <div id="footer" class="row text-center mb-3">
+        <div class="col-6 text-center">
+            
+            <button  mat-raised-button class="certificates-button" [routerLink]="['/register']">Back</button>
+        </div>
+        <div class="col-6 text-center">
+            <button  mat-raised-button class="certificates-button" (click)="verify()">Verify</button>
+        </div>
+    </div>
+
+</div>

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 import {JwtHelperService} from '@auth0/angular-jwt'
 import {Token} from '../../models/Token'
+import { VerifyCode } from 'src/app/models/Login';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,14 @@ export class AuthenticationService {
    }
 
 
-  login(email:string, password:string):Observable<Token>{
-    return this.http.post<Token>(environment.apiHost + 'api/user/login', {email:email, password:password}, {
+   login(email: string, password: string, type: string): Observable<string> {
+    return this.http.post(environment.apiHost + 'api/user/login', { email, password, type }, { responseType: 'text' });
+  }
+  
+  verifyLogin(email: string, verifyCode: VerifyCode): Observable<Token>{
+    return this.http.post<Token>(environment.apiHost + 'api/user/login/' + email + "/verify", verifyCode, {
       headers:this.headers,
     });
-
   }
 
   isLoggedIn(): boolean{
