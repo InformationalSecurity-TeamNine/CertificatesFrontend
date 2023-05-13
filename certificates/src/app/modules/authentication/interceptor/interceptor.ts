@@ -3,13 +3,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
+  constructor(private router: Router, private authenticationService: AuthenticationService){}
   intercept(
     request: HttpRequest<any>, 
     next: HttpHandler
@@ -23,9 +28,32 @@ export class Interceptor implements HttpInterceptor {
         headers: request.headers.set('X-Auth-Token', decodedItem)
       });
 
-      return next.handle(cloned);
+      return next.handle(cloned).pipe(
+        tap(() =>{},
+          (error:any) =>{
+            if (error instanceof HttpErrorResponse && error.error.status === 401) {
+              // Logout logic here
+              
+              alert('Your Session has expired. Please log in again.');
+              this.authenticationService.logout();
+              this.router.navigate(['/login']);
+            }
+          }
+        )
+      );
     } else {
-      return next.handle(request);
+      return next.handle(request).pipe(
+        tap(() =>{},
+          (error:any) =>{
+            if (error instanceof HttpErrorResponse && error.error.status === 401) {
+              // Logout logic here
+              alert('Your Session has expired. Please log in again.');
+              this.authenticationService.logout();
+              this.router.navigate(['/login']);
+            }
+          }
+        )
+      );
     }
       
   }
