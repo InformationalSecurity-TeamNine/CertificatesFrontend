@@ -44,8 +44,10 @@ export class LoginComponent {
      
       this.authenticationService.validateRecaptcha(token).subscribe({
         next: (result) => {
-          if(result === true)
-          this.validateLogin(email, password, type);
+          if(result === true){
+            this.validatePassword(email, password, type);
+
+          }
         else
           alert('Invalid recaptcha');
 
@@ -60,6 +62,24 @@ export class LoginComponent {
 
   }
 
+
+  private validatePassword(email: string, password: string, type: string) {
+    this.authenticationService.isPasswordDurationValid(email).subscribe({
+      next: (res) => {
+        if (res === true)
+          this.validateLogin(email, password, type);
+        else
+          this.router.navigate(['/send-reset-code']);
+
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          alert(error.error.message);
+          this.hasError = true;
+        }
+      }
+    });
+  }
 
   private validateLogin(email: string, password: string, type: string) {
     this.authenticationService.login(email, password, type).subscribe({

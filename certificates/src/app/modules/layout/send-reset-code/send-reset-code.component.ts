@@ -21,15 +21,20 @@ export class SendResetCodeComponent {
   });
   constructor( private router: Router, private userService: UserService,private route: ActivatedRoute ) {}
 send(){
-  if (!this.CodeForm.valid){return;}
-  console.log(this.CodeForm.value.verifyType);
+  if (!this.CodeForm.valid){alert('Please enter valid email.');return;}
   this.resetType.verifyType = this.CodeForm.value.verifyType;
   this.userService.sendResetCode( this.CodeForm.value.email, this.resetType)
-          .subscribe(
-            (res) => {
+          .subscribe({
+            next:(result) =>{
               this.router.navigate(['/reset-password/' + this.CodeForm.value.email]);
-              
+
+            },
+            error:(error) =>{
+              this.router.navigate(['/reset-password/' + this.CodeForm.value.email]);
+
             }
+          }
+            
           );
 
 }

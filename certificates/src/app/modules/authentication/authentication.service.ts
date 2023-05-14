@@ -24,6 +24,9 @@ export class AuthenticationService {
   constructor(private http:HttpClient) {
     this.user$.next(this.getRole());
    }
+   isPasswordDurationValid(email: string): Observable<boolean> {
+    return this.http.get<boolean>(environment.apiHost + 'api/user/password-expired/' + email);
+  }
 
 
    login(email: string, password: string, type: string): Observable<string> {
@@ -44,6 +47,7 @@ export class AuthenticationService {
   isLoggedIn(): boolean{
     return localStorage.getItem('user') != null;
   }
+
 
   getRole():any{
     if(this.isLoggedIn()){
