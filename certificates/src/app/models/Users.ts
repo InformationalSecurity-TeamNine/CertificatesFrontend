@@ -16,6 +16,14 @@ export interface RegisteredUser{
     telephoneNumber:string,
     email:string,
 }
+
+export interface OauthUser{
+    id?:number,
+    name:string,
+    surname:string,
+    email:string,
+
+}
 export interface ResetType{
     verifyType:String
 }

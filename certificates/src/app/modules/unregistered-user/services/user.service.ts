@@ -1,6 +1,6 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PasswordReset, RegisteredUser, ResetType, User } from 'src/app/models/Users';
+import { OauthUser, PasswordReset, RegisteredUser, ResetType, User } from 'src/app/models/Users';
 import { environment } from 'src/app/environment/environment';
 import { Observable } from 'rxjs';
 import { VerifyCode } from 'src/app/models/Login';
@@ -14,7 +14,7 @@ export class UserService {
   register(user: User) : Observable<RegisteredUser> {
     return this.http.post<RegisteredUser>(environment.apiHost + "api/user/register", user)
   }
-  activate(activateCode: string): Observable<any>{
+  activate(activateCode: string): Observable<string>{
     return this.http.put(environment.apiHost + "api/user/activate/" + activateCode, HttpRequest, { responseType: 'text' })
   }
   
@@ -23,6 +23,9 @@ export class UserService {
   }
   reset(email: string, resetPassword: PasswordReset): Observable<string>{
     return this.http.put(environment.apiHost + "api/user/"+ email + "/resetPassword/", resetPassword, {responseType: 'text'})
+  }
+  oauthSignIn(user: OauthUser) : Observable<any> {
+    return this.http.post<any>(environment.apiHost + "api/user/oauth", user)
   }
 
   
