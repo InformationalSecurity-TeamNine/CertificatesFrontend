@@ -31,11 +31,32 @@
                     <label for="password" class="col-form-label dark-blue-color align-text-left">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password123!" formControlName="password">
                 </div>
+                <div class="mb-3 space">
+                    <label class="col-form-label dark-blue-color align-text-left ">Verify with</label>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="verifyType" [ngModel]="type" value="EMAIL" type="radio" name="verifyType" id="EmailCheck" checked>
+                        <label class="col-form-label dark-blue-color align-text-left no-pad" for="EmailCheck">
+                          EMAIL
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" formControlName="verifyType" [ngModel]="type" value="SMS" type="radio" name="verifyType" id="SmsCheck">
+                        <label class="col-form-label dark-blue-color align-text-left no-pad" for="SmsCheck">
+                          SMS
+                        </label>
+                      </div>
+                </div>
+                <div class="mb-3">
+                    
+                    <ngx-recaptcha2 name="recaptcha" formControlName="recaptcha" #captchaElem [siteKey]="sitekey"></ngx-recaptcha2>
+                </div>
 
             <div class="mb-3">
                 <button type="submit" class="button-style" id="confirmLogin">Login</button>
                 <h3 class="py-3"><a [routerLink]="['/register']" class="dark-blue-color">New Account? Register now! </a></h3>
             </div>
+            
+            
          </form>
 
             <div class="mb-3">
@@ -57,12 +78,12 @@
                 <div class="text-center pics">
                     <img src="../../../../assets/google.png" alt="google" style="width:40px;height:40px;margin-right: 60px;" class="oauth">
                     <img src="../../../../assets/facebook.png" alt="apple" style="width:40px;height:40px;" class="oauth">
+                    <div id="buttonDiv"></div>
                 </div>
             </div>
         
 
         </div>
     </div>
-
 </section>
 

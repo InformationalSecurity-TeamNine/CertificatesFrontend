@@ -15,7 +15,6 @@ export class MyInfoComponent implements OnInit{
   ngOnInit(): void {
     
     this.authService.user$.subscribe((result) =>{
-      console.log(result);
       if(result !== null && result !== undefined){
         this.isLogedIn = true;
         const user = this.jwtDecoder.getDecodedAccesToken();

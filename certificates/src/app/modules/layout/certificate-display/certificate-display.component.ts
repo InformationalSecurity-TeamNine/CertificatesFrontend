@@ -70,7 +70,7 @@ export class CertificateDisplayComponent implements OnInit{
           const a = document.createElement('a');
           const objectUrl = URL.createObjectURL(res);
           a.href = objectUrl;
-          a.download = this.selected.serialNumber + ".crt";
+          a.download = this.selected.serialNumber + ".zip";
           a.click();
           URL.revokeObjectURL(objectUrl);
 

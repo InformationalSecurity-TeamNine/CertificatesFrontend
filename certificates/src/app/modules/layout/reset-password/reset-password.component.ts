@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../unregistered-user/services/user.service';
 import { PasswordReset, ResetType } from 'src/app/models/Users';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reset-password',
@@ -23,7 +24,7 @@ export class ResetPasswordComponent {
     repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
 
   });
-  constructor( private userService: UserService, private route: ActivatedRoute ) {}
+  constructor( private userService: UserService,private router:Router, private route: ActivatedRoute ) {}
   
   
   reset(){
@@ -35,8 +36,12 @@ export class ResetPasswordComponent {
     this.userService.reset(email, this.passwordReset).subscribe({
       next: (res) => {
         alert("Succesfully reseted password!")
+        this.router.navigate(['/login']);
+      },
+      error: (customError: HttpErrorResponse) =>{
         
-      }
+        alert(customError.error.split('"')[3]);
+    }
     })
   });
 }
